@@ -1,14 +1,14 @@
-# 🛡️ Security Policy
+# 🛡️ Security Vulnerability Reporting Guidelines
+
+We take the security of this project seriously. Please review our vulnerability reporting guidelines.
 
 ## Supported Versions
 
-Only the latest version of this platform is supported for critical security updates.
+| Version | Supported          |
+| ------- | ------------------ |
+| 1.0.x   | ✅ Supported       |
+| < 1.0   | ❌ Not Supported   |
 
-| Version | Supported |
-| ------- | --------- |
-| 1.0.x   | ✅ Yes    |
-| < 1.0   | ❌ No     |
+## Private Vulnerability Reporting
 
-## Reporting a Vulnerability
-
-Please do not report security vulnerabilities through public GitHub issues. Instead, email reports to standard project security handles or contact the core maintainer. We aim to respond within 48 hours to validate and resolve the vulnerability.
+Please do **NOT** open public issues to report security vulnerabilities. Instead, please contact the maintainer privately or email directly to project security coordinators. We will validate and remediate the issue within 48 hours.
