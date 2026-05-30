@@ -1,13 +1,18 @@
+// Export Wishlist items to CSV file
 window.exportWishlistToCSV = function() {
     const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
     if (wishlist.length === 0) {
-        if(typeof CaraToast !== 'undefined') CaraToast.show('Wishlist is empty!', 'warning');
+        if(typeof CaraToast !== 'undefined') {
+            CaraToast.show('Wishlist is empty!', 'warning');
+        } else {
+            alert('Wishlist is empty!');
+        }
         return;
     }
     
-    let csvContent = "data:text/csv;charset=utf-8,ID,Name,Price,Image\n";
+    let csvContent = "data:text/csv;charset=utf-8,Product ID,Product Name,Price\n";
     wishlist.forEach(item => {
-        csvContent += `"${item.id}","${item.name}","${item.price}","${item.image}"\n`;
+        csvContent += `"${item.id || ''}","${(item.name || '').replace(/"/g, '""')}","${item.price || ''}"\n`;
     });
     
     const encodedUri = encodeURI(csvContent);
