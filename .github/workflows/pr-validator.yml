@@ -48,3 +48,5 @@ jobs:
             }
 
             console.log("PR body successfully validated against the template!");
+
+# Verifies that Pull Request descriptions follow structural template rules.
