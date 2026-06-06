@@ -18,3 +18,5 @@ jobs:
               repo: context.repo.repo,
               body: `### Welcome to Cara! 🛍️\n\nThank you so much for opening this pull request. We really appreciate your contribution to this e-commerce platform!\n\n**Next Steps:**\n- Ensure your code follows the coding standard.\n- A maintainer will review your changes shortly.`
             })
+
+# Greets first-time contributors and provides direct link directories to onboarding resources.
