@@ -23,3 +23,5 @@ jobs:
                 labels: labels
               });
             }
+
+# Automated issue classification workflow utilizing structural label tags.
