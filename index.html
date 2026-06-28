@@ -2,20 +2,12 @@
 <html lang="en">
 
 <head>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
   <!-- Preconnect and prefetch resources optimized -->
   <!-- Character Encoding -->
   <meta charset="UTF-8" />
 
   <!-- Content Security Policy (CSP) for Frontend Security -->
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src 'self' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://fonts.gstatic.com; img-src 'self' data: https://www.animatedimages.org https://cara-seven-ashen.vercel.app;" />
-
-  <!-- Resource Hints -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
 
   <!-- Viewport for Responsive Design -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -126,13 +118,11 @@
 </head>
 
 <body>
-    <a href="#product1" class="skip-link" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;">Skip to Content</a>
-    <a href="#product1" class="skip-link" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;">Skip to Content</a>
+    <a href="#feature" class="skip-link" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;">Skip to Content</a>
   <div id="main">
     <div id="top">
       <div id="workingArea">
         <section id="header">
-    <!-- Logo -->
     <a href="index.html">
       <img id="siteLogo" src="images/logo.png" alt="Cara Logo" />
     </a>
@@ -140,7 +130,6 @@
     <div>
       <ul id="navbar">
 
-        <!-- Main Navigation Links -->
         <li><a href="index.html">Home</a></li>
         <li><a href="shop.html">Shop</a></li>
         <li><a href="blog.html">Blog</a></li>
@@ -149,215 +138,129 @@
         <li><a href="community.html">Community</a></li>
         <li><a href="promotions.html">Promotions</a></li>
 
-        <!-- Contact Icon -->
         <li class="nav-icon">
           <a href="contact.html" aria-label="Contact">
             <i class="ri-customer-service-2-line"></i>
           </a>
         </li>
 
-        <!-- Login Icon -->
         <li class="nav-icon">
           <a href="login.html" aria-label="Login">
             <i class="ri-user-3-line"></i>
           </a>
         </li>
 
-        <!-- Cart Icon -->
+        <li class="nav-icon">
+          <a href="wishlist.html" aria-label="Wishlist">
+            <i class="ri-heart-line"></i>
+            <span class="wishlist-count hidden">0</span>
+          </a>
+        </li>
+
         <li class="nav-icon">
           <a class="active" href="cart.html" id="lg-bag" aria-label="Cart">
             <i class="ri-shopping-bag-4-line"></i>
           </a>
         </li>
 
-          <div class="mobile">
-            <a href="wishlist.html" class="wishlist-nav-link" aria-label="Wishlist"><i class="ri-heart-line"></i><span class="wishlist-count hidden">0</span></a>
-            <a href="cart.html"><i class="ri-shopping-bag-4-line"></i></a>
-            <i class="fas fa-outdent" id="bar" role="button" aria-label="Open menu" aria-expanded="false" tabindex="0"></i>
-          </div>
-        </section>
-        <div class="search-container">
-          <input 
-            type="text"
-            id="searchBar"
-            placeholder="Search products..."
-          >
-        </div>
-<section id="hero" class="hero-slider">
-        <!-- Theme Toggle -->
         <li class="nav-icon">
           <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
             <i class="ri-moon-line" id="themeIcon"></i>
           </button>
         </li>
 
-        <!-- Close Button -->
-        <a href="javascript:void(0)" id="close" aria-label="Close menu" aria-hidden="false">
+        <a href="#" id="close" aria-label="Close menu">
           <i class="fa-solid fa-xmark"></i>
         </a>
-
       </ul>
     </div>
 
-    <!-- Mobile Navbar -->
     <div class="mobile">
-
-      <!-- Login Icon -->
       <a href="login.html" aria-label="Login">
         <i class="ri-user-3-line"></i>
       </a>
-
-      <!-- Cart Icon -->
-      <a href="cart.html" aria-label="Cart">
-        <i class="ri-shopping-bag-4-line"></i>
-      </a>
-      <!-- Theme Toggle -->
+      <a href="wishlist.html" class="wishlist-nav-link" aria-label="Wishlist"><i class="ri-heart-line"></i><span class="wishlist-count hidden">0</span></a>
+      <a href="cart.html"><i class="ri-shopping-bag-4-line"></i></a>
       <button class="theme-toggle" id="themeToggleMobile" aria-label="Toggle dark mode">
         <i class="ri-moon-line" id="themeIconMobile"></i>
       </button>
+      <i class="fas fa-outdent" id="bar" role="button" aria-label="Open menu" aria-expanded="false" tabindex="0"></i>
     </div>
   </section>
 
   <div class="search-container">
-    <label for="searchBar" class="sr-only" style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0;">Search Products</label>
-    <input 
-      type="text"
-      id="searchBar"
-      placeholder="Search products..."
-    >
-  </div>   
+    <label for="searchBar" class="sr-only">Search Products</label>
+    <input type="text" id="searchBar" placeholder="Search products...">
+  </div>
 
 <section id="hero" class="hero-slider">
           <div class="slide active" style="background-image: url('images/hero4.png');">
-            
             <div class="slide-content">
-
-              <div class="hero-badge">
-                Trending Fashion 2025
-              </div>
-
+              <div class="hero-badge">Trending Fashion 2025</div>
               <h4 class="hero-small">Trade-in-offer</h4>
-
-<h2 class="hero-title">Super Value Deals</h2>
-
-<h1 class="hero-main">On All Products</h1>
-
-<p class="hero-desc">
-  Save more with coupons & up to 70% off on premium fashion collections.
-</p>
+              <h2 class="hero-title">Super Value Deals</h2>
+              <h1 class="hero-main">On All Products</h1>
+              <p class="hero-desc">Save more with coupons & up to 70% off on premium fashion collections.</p>
               <div class="hero-tags">
                 <span>Streetwear</span>
                 <span>Premium</span>
                 <span>Trending</span>
               </div>
-
               <div class="hero-btn-group hero-buttons">
-
-                <a href="shop.html" class="btn-shop-now">
-                  Shop Now
-                </a>
-<button onclick="openQuiz()" aria-label="Take style quiz">
-  Take Style Quiz
-</button>
+                <a href="shop.html" class="btn-shop-now">Shop Now</a>
+                <button onclick="openQuiz()" aria-label="Take style quiz">Take Style Quiz</button>
               </div>
-
             </div>
           </div>
 
-          <!-- Slide 2 -->
           <div class="slide" style="background-image: url('images/banner/b1.png');">
-
             <div class="slide-content">
-
-              <div class="hero-badge">
-                New Collection
-              </div>
-
+              <div class="hero-badge">New Collection</div>
               <h4>New Arrivals</h4>
-
               <h2>Summer Collection</h2>
-
               <h1>Explore Trends</h1>
-
-              <p>
-                Discover fresh styles designed to elevate your
-                wardrobe this season.
-              </p>
-
+              <p>Discover fresh styles designed to elevate your wardrobe this season.</p>
               <div class="hero-tags">
                 <span>Summer</span>
                 <span>Minimal</span>
                 <span>Luxury</span>
               </div>
-
               <div class="hero-btn-group">
-
-                <a href="shop.html" class="btn-shop-now">
-                  Explore Collection
-                </a>
-
+                <a href="shop.html" class="btn-shop-now">Explore Collection</a>
               </div>
-
             </div>
           </div>
 
-          <!-- Slide 3 -->
           <div class="slide" style="background-image: url('images/banner/b2.png');">
-
             <div class="slide-content">
-
-              <div class="hero-badge">
-                Limited Offer
-              </div>
-
+              <div class="hero-badge">Limited Offer</div>
               <h4>Seasonal Sale</h4>
-
               <h2>Up to 50% Off</h2>
-
               <h1>Exclusive Deals</h1>
-
-              <p>
-                Don't miss the biggest sale of the season with
-                exclusive discounts.
-              </p>
-
+              <p>Don't miss the biggest sale of the season with exclusive discounts.</p>
               <div class="hero-tags">
                 <span>Sale</span>
                 <span>Fashion</span>
                 <span>Exclusive</span>
               </div>
-
               <div class="hero-btn-group">
-
-                <a href="shop.html" class="btn-shop-now">
-                  Grab the Deal
-                </a>
-
+                <a href="shop.html" class="btn-shop-now">Grab the Deal</a>
               </div>
-
             </div>
           </div>
 
-          <!-- Slider Controls -->
           <button class="slider-btn prev" aria-label="Previous Slide">
             <i class="fa-solid fa-chevron-left"></i>
           </button>
-
           <button class="slider-btn next" aria-label="Next Slide">
             <i class="fa-solid fa-chevron-right"></i>
           </button>
 
-          <!-- Slider Indicators -->
           <div class="slider-dots">
-
             <span class="dot active" data-slide="0"></span>
-
             <span class="dot" data-slide="1"></span>
-
             <span class="dot" data-slide="2"></span>
-
           </div>
-
         </section>
 
       </div>
@@ -550,7 +453,7 @@
       </div>
 
     </div>
-  </section>
+    </section>
 
     <section id="banner" class="section-m1">
       <h4 >Repair Services</h4>
@@ -618,68 +521,6 @@
             <a href="javascript:void(0)" class="pro-cart-btn" aria-label="Add to cart" onclick="event.stopPropagation();addToCart('Classic White Cotton Shirt','₹5,499','images/products/n3.jpg',1,'M');return false;"><i class="ri-shopping-cart-2-line"></i></a>
           </div>
         </div>
-
-    </section>
-
-    <section id="sm-banner" class="section-p1">
-
-    <div class="banner-box">
-        <h4>crazy deals</h4>
-        <h2>buy 1 get 1 free</h2>
-        <span>The best classic dress is on sale at cara</span>
-
-        <a href="deals.html">
-            <button class="white">Learn More</button>
-        </a>
-    </div>
-
-    <div class="banner-box banner-box2">
-        <h4>spring/summer</h4>
-        <h2>upcoming season</h2>
-        <span>The best classic dress is on sale at cara</span>
-
-        <a href="collections.html">
-            <button class="white">Collection</button>
-        </a>
-    </div>
-
-</section>
-
-   <section id="banner3">
-
-    <div class="banner-box banner-box1">
-        <h2>SEASONAL SALE</h2>
-        <h3>Winter Collection - 50% OFF</h3>
-
-        <a href="winter-sale.html">
-            <button class="white">Explore Sale</button>
-        </a>
-    </div>
-
-
-    <div class="banner-box banner-box3">
-        <h2>T-SHIRTS</h2>
-        <h3>New Trendy Prints</h3>
-
-        <a href="tshirts.html">
-            <button class="white">Explore T-Shirts</button>
-        </a>
-    </div>
-    
-
-
-    <div class="banner-box banner-box2">
-        <h2>NEW FOOTWEAR COLLECTION</h2>
-        <h3>Spring/Summer 2022</h3>
-
-        <a href="footware-collection.html">
-            <button class="white">Explore Footwear</button>
-        </a>
-    </div>
-
-</section>
-
-      </div>
 
       <div class="pro" data-category="formal">
         <div class="pro-img-wrap"><img loading="lazy" src="images/products/n4.jpg" alt="Sandstone Tactical Utility Shirt" /></div>
@@ -776,23 +617,65 @@
         </div>
       </div>
 
-    </div>
-  </section>
+    </section>
 
-  <section id="sm-banner" class="section-p1">
+    <section id="sm-banner" class="section-p1">
+
     <div class="banner-box">
-      <h4>crazy deals</h4>
-      <h2>buy 1 get 1 free</h2>
-      <span>The best classic dress is on sale at cara</span>
-      <a href="crazy-deals.html"><button class="white">Learn More</button></a>
+        <h4>crazy deals</h4>
+        <h2>buy 1 get 1 free</h2>
+        <span>The best classic dress is on sale at cara</span>
+
+        <a href="deals.html">
+            <button class="white">Learn More</button>
+        </a>
     </div>
+
     <div class="banner-box banner-box2">
-      <h4>upcoming season</h4>
-      <h2>winter collection</h2>
-      <span>The best classic dress is on sale at Cara</span>
-      <a href="winter-collection.html"><button class="white">Collection</button></a>
+        <h4>spring/summer</h4>
+        <h2>upcoming season</h2>
+        <span>The best classic dress is on sale at cara</span>
+
+        <a href="collections.html">
+            <button class="white">Collection</button>
+        </a>
     </div>
-  </section>
+
+</section>
+
+   <section id="banner3">
+
+    <div class="banner-box banner-box1">
+        <h2>SEASONAL SALE</h2>
+        <h3>Winter Collection - 50% OFF</h3>
+
+        <a href="winter-sale.html">
+            <button class="white">Explore Sale</button>
+        </a>
+    </div>
+
+
+    <div class="banner-box banner-box3">
+        <h2>T-SHIRTS</h2>
+        <h3>New Trendy Prints</h3>
+
+        <a href="tshirts.html">
+            <button class="white">Explore T-Shirts</button>
+        </a>
+    </div>
+    
+
+
+    <div class="banner-box banner-box2">
+        <h2>NEW FOOTWEAR COLLECTION</h2>
+        <h3>Spring/Summer 2022</h3>
+
+        <a href="footware-collection.html">
+            <button class="white">Explore Footwear</button>
+        </a>
+    </div>
+
+</section>
 
 
 
@@ -860,7 +743,6 @@
       <a href="login.html">Sign In</a>
       <a href="cart.html">View Cart</a>
       <a href="wishlist.html">My Wishlist</a>
-      <a href="javascript:void(0)">My Wishlist</a>
       <a href="cart.html">Track My Order</a>
       <a href="contact.html">Help</a>
     </div>
@@ -953,57 +835,7 @@
 </script>
 
 <script src="products.js"></script>
-<script src="app.js"></script>  
-<script>
-
-const searchBar = document.getElementById("searchBar");
-
-searchBar.addEventListener("keyup", function() {
-
-  const input = searchBar.value.toLowerCase();
-
-  const products = document.querySelectorAll(".pro");
-
-  products.forEach(function(product){
-
-    const productName = product
-      .querySelector("h5")
-      .textContent
-      .toLowerCase();
-
-    if(productName.includes(input)){
-      product.style.display = "block";
-    }
-    else{
-      product.style.display = "none";
-    }
-
-  });
-
-});
-
-</script>
-<script>
-const btn = document.getElementById("backToTop");
-
-if (btn) {
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 200) {
-      btn.style.display = "block";
-    } else {
-      btn.style.display = "none";
-    }
-  });
-
-  btn.addEventListener("click", () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
-  });
-}
-</script>
-<button id="backToTop">↑</button>
+<script src="app.js"></script>
 <script src="js/session-lock.js" defer></script>
 </body>
 

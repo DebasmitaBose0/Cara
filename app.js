@@ -1059,7 +1059,7 @@ window.selectStyle = function (style) {
    SEARCH & FILTER
    ============================================================ */
 document.addEventListener("DOMContentLoaded", function () {
-    const searchInput    = document.getElementById("searchInput");
+    const searchInput    = document.getElementById("searchInput") || document.getElementById("searchBar");
     const searchBtn      = document.getElementById("searchBtn");
     const categoryFilter = document.getElementById("categoryFilter");
 
@@ -1326,7 +1326,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const styleFilter    = document.getElementById("style-filter");
         const brandFilter    = document.getElementById("brand-filter");
         const colorFilter    = document.getElementById("color-filter");
-        const searchInput    = document.getElementById("searchInput");
+    const searchInput    = document.getElementById("searchInput") || document.getElementById("searchBar");
         const suggestions    = document.getElementById("searchSuggestions");
 
         if (categoryFilter) categoryFilter.value = "all";
