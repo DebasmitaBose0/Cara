@@ -161,6 +161,10 @@ function updateCartCount() {
     }
     const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
 
+    if (window.CaraStore) {
+        window.CaraStore.setCart(cart);
+    }
+
     const desktopCount = document.getElementById("desktopCartCount");
     const mobileCount  = document.getElementById("mobileCartCount");
 
@@ -185,6 +189,10 @@ function updateWishlistCount() {
 
     if (!Array.isArray(wishlist)) {
         wishlist = [];
+    }
+
+    if (window.CaraStore) {
+        window.CaraStore.setWishlist(wishlist);
     }
 
     const totalItems = wishlist.length;
@@ -852,6 +860,11 @@ window.buyNow = function (productName, productPrice, productImage, quantity, siz
 (function () {
     const html       = document.documentElement;
     const savedTheme = localStorage.getItem("theme") || "light";
+
+    if (window.CaraStore) {
+        window.CaraStore.set('theme', savedTheme);
+    }
+
     html.setAttribute("data-theme", savedTheme);
 
     if (savedTheme === "dark") {
@@ -877,11 +890,13 @@ window.buyNow = function (productName, productPrice, productImage, quantity, siz
             document.body.classList.remove("dark");
             html.setAttribute("data-theme", "light");
             localStorage.setItem("theme", "light");
+            if (window.CaraStore) window.CaraStore.set('theme', 'light');
             updateThemeIcon("light");
         } else {
             document.body.classList.add("dark");
             html.setAttribute("data-theme", "dark");
             localStorage.setItem("theme", "dark");
+            if (window.CaraStore) window.CaraStore.set('theme', 'dark');
             updateThemeIcon("dark");
         }
     }

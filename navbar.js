@@ -101,4 +101,19 @@ function loadNavbar(activePage) {
   if (typeof window.updateWishlistCount === 'function') {
     window.updateWishlistCount();
   }
+
+  if (window.CaraStore) {
+    var cartCount = window.CaraStore.get('cartCount');
+    var wishlistCount = window.CaraStore.get('wishlistCount');
+    var cartBadge = container.querySelector('.cart-count');
+    var wishlistBadge = container.querySelector('.wishlist-count');
+    if (cartBadge) {
+      cartBadge.textContent = cartCount || 0;
+      cartBadge.classList.toggle('hidden', !cartCount);
+    }
+    if (wishlistBadge) {
+      wishlistBadge.textContent = wishlistCount || 0;
+      wishlistBadge.classList.toggle('hidden', !wishlistCount);
+    }
+  }
 }
