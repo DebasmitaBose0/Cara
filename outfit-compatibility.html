@@ -9,6 +9,7 @@
 
   <!-- Page title -->
   <title>Outfit Compatibility Checker | Cara</title>
+  <link rel="manifest" href="manifest.json">
 
   <!-- Stylesheets -->
   <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
@@ -373,5 +374,14 @@
   <script>loadNavbar('outfit');</script>
   <script src="app.js"></script>
   <script src="outfit-compatibility.js"></script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('service-worker.js').catch(function(err) {
+      console.warn('SW registration failed:', err);
+    });
+  });
+}
+</script>
 </body>
 </html>

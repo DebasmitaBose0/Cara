@@ -9,6 +9,7 @@
 
     <!-- Page Title -->
     <title>Delivery Information</title>
+  <link rel="manifest" href="manifest.json">
     
     <style>
       * {
@@ -356,5 +357,14 @@
       });
     </script>
     <script src="assets/js/timeline.js" defer></script>
-  </body>
+  <script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('service-worker.js').catch(function(err) {
+      console.warn('SW registration failed:', err);
+    });
+  });
+}
+</script>
+</body>
 </html>

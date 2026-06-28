@@ -10,6 +10,7 @@
 
   <!-- Page Title -->
   <title>Cara — Modern E‑Commerce</title>
+  <link rel="manifest" href="manifest.json">
 
   <!-- Favicon -->
   <link rel="icon" type="image/jpg" sizes="32x32" href="images/favicon.jpg">
@@ -576,6 +577,15 @@
   </script>
 <script src="js/reviews.js"></script>
 <script src="js/image-zoom.js" defer></script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('service-worker.js').catch(function(err) {
+      console.warn('SW registration failed:', err);
+    });
+  });
+}
+</script>
 </body>
 <script src="singleProduct.js"></script>
 <script src="js/stock-simulator.js" defer></script>

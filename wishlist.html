@@ -16,6 +16,7 @@
     <!-- Viewport for Responsive Design -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wishlist — Cara</title>
+  <link rel="manifest" href="manifest.json">
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="style.css">
@@ -730,5 +731,14 @@
     </script>
 
 <script src="js/wishlist-notes.js" defer></script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('service-worker.js').catch(function(err) {
+      console.warn('SW registration failed:', err);
+    });
+  });
+}
+</script>
 </body>
 </html>

@@ -9,6 +9,7 @@
 
   <!-- Page Title -->
   <title>Secure Checkout – Cara</title>
+  <link rel="manifest" href="manifest.json">
 
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
@@ -258,5 +259,14 @@
   <script src="js/checkout-timer.js" defer></script>
 
 <script src="js/checkout-autosave.js" defer></script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('service-worker.js').catch(function(err) {
+      console.warn('SW registration failed:', err);
+    });
+  });
+}
+</script>
 </body>
 </html>

@@ -10,6 +10,7 @@
 
     <!-- Page Title -->
     <title>Cara — Trendy T-Shirts</title>
+  <link rel="manifest" href="manifest.json">
 
     <!-- Favicon -->
     <link rel="icon" type="image/jpg" href="images/favicon.jpg" />
@@ -422,6 +423,15 @@
     </footer>
 
     <script src="app.js"></script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('service-worker.js').catch(function(err) {
+      console.warn('SW registration failed:', err);
+    });
+  });
+}
+</script>
 </body>
 
 </html>
