@@ -32,6 +32,12 @@ function loadNavbar(activePage) {
         </li>
 
         <li>
+          <a ${activePage === 'orders' ? 'class="active" aria-current="page"' : ''} href="order-history.html" title="Order History">
+            My Orders
+          </a>
+        </li>
+
+        <li>
           <a ${activePage === 'outfit' ? 'class="active" aria-current="page"' : ''} href="outfit-compatibility.html" title="Outfit Checker">
             Outfit Checker
           </a>

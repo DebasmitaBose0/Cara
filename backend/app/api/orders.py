@@ -1,5 +1,6 @@
-from fastapi import APIRouter, Depends, HTTPException
-from sqlalchemy.orm import Session
+from fastapi import APIRouter, Depends, HTTPException, Query
+from sqlalchemy.orm import Session, joinedload
+from typing import List, Optional
 from .. import models, schemas
 from ..database import get_db
 from .auth import get_current_user
@@ -95,3 +96,38 @@ def create_order(
         "message": "Order created successfully",
         "order_id": new_order.id
     }
+
+
+@router.get("/", response_model=List[schemas.OrderResponse])
+def list_orders(
+    skip: int = Query(0, ge=0),
+    limit: int = Query(20, ge=1, le=100),
+    db: Session = Depends(get_db),
+    current_user: models.User = Depends(get_current_user)
+):
+    orders = (
+        db.query(models.Order)
+        .filter(models.Order.email == current_user.email)
+        .order_by(models.Order.created_at.desc())
+        .offset(skip)
+        .limit(limit)
+        .all()
+    )
+    return orders
+
+
+@router.get("/{order_id}", response_model=schemas.OrderResponse)
+def get_order(
+    order_id: int,
+    db: Session = Depends(get_db),
+    current_user: models.User = Depends(get_current_user)
+):
+    order = (
+        db.query(models.Order)
+        .options(joinedload(models.Order.items))
+        .filter(models.Order.id == order_id, models.Order.email == current_user.email)
+        .first()
+    )
+    if not order:
+        raise HTTPException(status_code=404, detail="Order not found")
+    return order

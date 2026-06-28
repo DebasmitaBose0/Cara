@@ -1,6 +1,7 @@
 from pydantic import BaseModel, EmailStr, Field, field_validator
-from typing import Optional
+from typing import Optional, List
 from enum import Enum
+from datetime import datetime
 import re
 
 class ProductBase(BaseModel):
@@ -113,3 +114,29 @@ class OrderCreate(BaseModel):
     zip: str
     items: list[OrderItemCreate]
     coupon: Optional[str] = None
+
+
+class OrderItemResponse(BaseModel):
+    id: int
+    product_name: str
+    quantity: int
+    price: float
+
+    class Config:
+        from_attributes = True
+
+
+class OrderResponse(BaseModel):
+    id: int
+    full_name: str
+    email: str
+    address: str
+    city: str
+    zip_code: str
+    total_amount: float
+    status: str
+    created_at: datetime
+    items: Optional[List[OrderItemResponse]] = None
+
+    class Config:
+        from_attributes = True
