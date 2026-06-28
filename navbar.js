@@ -49,6 +49,12 @@ function loadNavbar(activePage) {
           </a>
         </li>
 
+        <li>
+          <a href="perf-report.html" title="Performance Report">
+            <i class="ri-bar-chart-2-line"></i>
+          </a>
+        </li>
+
         <!-- Contact Icon -->
         <li class="nav-icon">
           <a href="contact.html" title="Contact Us" aria-label="Contact">

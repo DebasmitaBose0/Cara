@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Performance Report | Cara</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: system-ui, -apple-system, sans-serif; background: #f5f5f5; color: #333; padding: 40px 24px; }
+    .container { max-width: 800px; margin: 0 auto; }
+    h1 { font-size: 28px; margin-bottom: 8px; }
+    .subtitle { color: #666; margin-bottom: 32px; }
+    .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-bottom: 32px; }
+    .card { background: #fff; border-radius: 8px; padding: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .card h3 { font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px; color: #888; margin-bottom: 8px; }
+    .card .value { font-size: 32px; font-weight: 700; }
+    .card .value.good { color: #27ae60; }
+    .card .value.needs-improvement { color: #f39c12; }
+    .card .value.poor { color: #e74c3c; }
+    .card .meta { font-size: 12px; color: #999; margin-top: 4px; }
+    table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    th { background: #f8f8f8; text-align: left; padding: 12px 16px; font-size: 12px; text-transform: uppercase; color: #888; }
+    td { padding: 12px 16px; border-top: 1px solid #eee; font-size: 14px; }
+    .actions { margin-top: 24px; display: flex; gap: 12px; }
+    .btn { padding: 10px 24px; border: none; border-radius: 6px; font-size: 14px; cursor: pointer; }
+    .btn-primary { background: #088178; color: #fff; }
+    .btn-secondary { background: #ddd; color: #333; }
+    .btn:hover { opacity: 0.85; }
+    .empty { text-align: center; padding: 48px; color: #999; }
+    .empty p { font-size: 16px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Performance Report</h1>
+    <p class="subtitle">Real User Metrics (Web Vitals) collected via PerformanceObserver</p>
+
+    <div id="summary" class="summary-grid"></div>
+
+    <h2 style="margin-bottom: 16px;">Metric History</h2>
+    <div id="history">
+      <div class="empty"><p>No metrics collected yet. Browse the site to gather data.</p></div>
+    </div>
+
+    <div class="actions">
+      <button class="btn btn-primary" onclick="location.reload()">Refresh</button>
+      <button class="btn btn-secondary" onclick="if(window.CaraPerf){window.CaraPerf.clearMetrics();location.reload()}">Clear Data</button>
+    </div>
+  </div>
+
+  <script src="js/perf-monitor.js"></script>
+  <script>
+    function ratingClass(value, rating) {
+      if (rating) return rating
+      if (!value) return ''
+      if (value < 2500) return 'good'
+      if (value < 4000) return 'needs-improvement'
+      return 'poor'
+    }
+
+    function render() {
+      if (!window.CaraPerf) return
+      var summary = window.CaraPerf.getSummary()
+      var metrics = window.CaraPerf.getMetrics()
+
+      var summaryEl = document.getElementById('summary')
+      var cards = [
+        { label: 'Pages Visited', value: summary.pages, rating: '' },
+        { label: 'LCP', value: summary.lcp ? Math.round(summary.lcp.value) + 'ms' : '—', rating: summary.lcp ? summary.lcp.rating : '' },
+        { label: 'CLS', value: summary.cls ? summary.cls.value.toFixed(3) : '—', rating: summary.cls ? summary.cls.rating : '' },
+        { label: 'FID', value: summary.fid ? Math.round(summary.fid.value) + 'ms' : '—', rating: summary.fid ? summary.fid.rating : '' },
+        { label: 'Total Metrics', value: summary.total, rating: '' }
+      ]
+
+      summaryEl.innerHTML = cards.map(function (c) {
+        var cls = c.rating ? ' ' + c.rating : ''
+        return '<div class="card"><h3>' + c.label + '</h3><div class="value' + cls + '">' + c.value + '</div></div>'
+      }).join('')
+
+      var historyEl = document.getElementById('history')
+      if (metrics.length === 0) return
+
+      historyEl.innerHTML = '<table><thead><tr><th>Metric</th><th>Type</th><th>Value</th><th>Rating</th><th>Time</th></tr></thead><tbody>' +
+        metrics.slice().reverse().slice(0, 50).map(function (m) {
+          var val = m.type === 'layout-shift' ? m.value.toFixed(3) : Math.round(m.value) + 'ms'
+          var time = new Date(m.time).toLocaleString()
+          var rating = m.rating || '—'
+          return '<tr><td>' + m.name + '</td><td>' + m.type + '</td><td>' + val + '</td><td>' + rating + '</td><td>' + time + '</td></tr>'
+        }).join('') + '</tbody></table>'
+    }
+
+    render()
+  </script>
+</body>
+</html>
