@@ -258,5 +258,18 @@
   <script src="js/checkout-timer.js" defer></script>
 
 <script src="js/checkout-autosave.js" defer></script>
+<script src="js/sanitizer.js"></script>
+
+<script>
+;(function() {
+  var form = document.getElementById('checkoutForm');
+  if (form && window.CaraSanitizer) {
+    form.addEventListener('submit', function(e) {
+      var fieldTypes = {'fullName': 'name', 'email': 'email', 'phone': 'phone', 'address': 'text', 'city': 'name', 'zip': 'digits'};
+      window.CaraSanitizer.sanitizeForm(form, fieldTypes);
+    });
+  }
+})();
+</script>
 </body>
 </html>

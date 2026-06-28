@@ -11,7 +11,11 @@ document.addEventListener("DOMContentLoaded", () => {
             if (saved) el.value = saved;
 
             el.addEventListener("input", () => {
-                sessionStorage.setItem(`cara_checkout_draft_${id}`, el.value);
+                var sanitized = window.CaraSanitizer ? window.CaraSanitizer.stripScript(el.value) : el.value;
+                sessionStorage.setItem(`cara_checkout_draft_${id}`, sanitized);
+                if (window.CaraSanitizer && sanitized !== el.value) {
+                    el.value = sanitized;
+                }
             });
         }
     });

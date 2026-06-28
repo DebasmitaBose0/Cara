@@ -18,7 +18,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // Save on input
             el.addEventListener("input", () => {
-                localStorage.setItem(`cara_contact_draft_${field}`, el.value);
+                var sanitized = window.CaraSanitizer ? window.CaraSanitizer.stripScript(el.value) : el.value;
+                localStorage.setItem(`cara_contact_draft_${field}`, sanitized);
+                if (window.CaraSanitizer && sanitized !== el.value) {
+                    el.value = sanitized;
+                }
                 showAutosaveStatus();
             });
         }

@@ -183,6 +183,19 @@
   <script src="app.js"></script>
   <script src="login.js"></script>
 
+<script src="js/sanitizer.js"></script>
+
+<script>
+;(function() {
+  var form = document.getElementById('loginForm');
+  if (form && window.CaraSanitizer) {
+    form.addEventListener('submit', function(e) {
+      var fieldTypes = {'email': 'email', 'password': 'text'};
+      window.CaraSanitizer.sanitizeForm(form, fieldTypes);
+    });
+  }
+})();
+</script>
 </body>
 =======
     <script src="navbar.js"></script>
@@ -212,6 +225,19 @@
       });
     </script>
     <script src="js/simple-captcha.js" defer></script>
+<script src="js/sanitizer.js"></script>
+
+<script>
+;(function() {
+  var form = document.getElementById('loginForm');
+  if (form && window.CaraSanitizer) {
+    form.addEventListener('submit', function(e) {
+      var fieldTypes = {'email': 'email', 'password': 'text'};
+      window.CaraSanitizer.sanitizeForm(form, fieldTypes);
+    });
+  }
+})();
+</script>
 </body>
 
 >>>>>>> main

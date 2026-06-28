@@ -311,5 +311,18 @@
 <script src="register.js"></script>
 >>>>>>> main
 
-  </body>
+  <script src="js/sanitizer.js"></script>
+
+<script>
+;(function() {
+  var form = document.getElementById('registerForm');
+  if (form && window.CaraSanitizer) {
+    form.addEventListener('submit', function(e) {
+      var fieldTypes = {'username': 'name', 'email': 'email', 'password': 'text'};
+      window.CaraSanitizer.sanitizeForm(form, fieldTypes);
+    });
+  }
+})();
+</script>
+</body>
 </html>
