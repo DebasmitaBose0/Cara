@@ -9,9 +9,10 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     const lockSession = () => {
+        var consent = window.CaraCookieConsent ? window.CaraCookieConsent.getConsent() : null
+        if (consent && !consent.functional) return
         localStorage.removeItem("cara_user_session");
         localStorage.removeItem("cara_user_token");
-        console.warn("Session cleared due to inactivity.");
     };
 
     // User activity listeners
