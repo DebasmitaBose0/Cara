@@ -53,6 +53,14 @@ class Order(Base):
     status = Column(String, default="PENDING")
     created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
 
+class NewsletterSubscriber(Base):
+    __tablename__ = "newsletter_subscribers"
+    id = Column(Integer, primary_key=True, index=True)
+    email = Column(String, unique=True, index=True, nullable=False)
+    name = Column(String, default="")
+    is_active = Column(Boolean, default=True)
+    created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
+
 class OrderItem(Base):
     __tablename__ = "order_items"
     id = Column(Integer, primary_key=True, index=True)
