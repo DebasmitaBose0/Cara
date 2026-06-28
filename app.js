@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (productName) {
             try {
                 // Fetch authentic data from backend instead of relying on scraped client DOM data
-                const res = await fetch("/api/products");
+                const res = window.CaraAPI ? await window.CaraAPI.get("/api/products") : await fetch("/api/products");
                 let dbProduct = null;
                 if (res.ok) {
                     const products = await res.json();
@@ -652,7 +652,7 @@ window.loadCart = async function () {
     // Fetch authentic prices from backend
     let dbProducts = [];
     try {
-        const res = await fetch("/api/products");
+        const res = window.CaraAPI ? await window.CaraAPI.get("/api/products") : await fetch("/api/products");
         if (res.ok) {
             dbProducts = await res.json();
         }

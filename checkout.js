@@ -284,11 +284,20 @@ if (submitBtn) {
     }))
   };
 
-  fetch('/api/orders', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(orderData)
-  })
+  function submitOrder() {
+    if (window.CaraAPI) {
+      return window.CaraAPI.post('/api/orders', orderData)
+        .then(function (data) { return { ok: true, body: data } })
+        .catch(function (err) { return { ok: false, body: err.data || { detail: err.message } } })
+    }
+    return fetch('/api/orders', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(orderData)
+    }).then(function (res) { return res.json().then(function (data) { return { status: res.status, ok: res.ok, body: data } }) })
+  }
+
+  submitOrder()
   .then(res => res.json().then(data => ({ status: res.status, ok: res.ok, body: data })))
   .then(res => {
     if (!res.ok) {

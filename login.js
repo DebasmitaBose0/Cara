@@ -44,9 +44,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
   async function fetchCaptcha() {
     try {
-      const res = await fetch('/api/auth/captcha');
-      if (res.ok) {
-        const data = await res.json();
+      const res = window.CaraAPI ? await window.CaraAPI.get('/api/auth/captcha') : await (await fetch('/api/auth/captcha')).json();
+      if (res && (res.captcha_token || res.captcha_image)) {
+        var data = res;
         currentCaptchaToken = data.captcha_token;
         if (captchaCanvas) {
           const ctx = captchaCanvas.getContext('2d');
@@ -111,17 +111,24 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     try {
-      const fetchFunc = typeof fetchWithTimeout === 'function' ? fetchWithTimeout : fetch;
-      const response = await fetchFunc('/api/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.detail || 'Invalid email or password.');
+      var data;
+      if (window.CaraAPI) {
+        try {
+          data = await window.CaraAPI.post('/api/auth/login', payload);
+        } catch (apiErr) {
+          throw new Error(apiErr.data && apiErr.data.detail ? apiErr.data.detail : 'Invalid email or password.');
+        }
+      } else {
+        const fetchFunc = typeof fetchWithTimeout === 'function' ? fetchWithTimeout : fetch;
+        const response = await fetchFunc('/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        data = await response.json();
+        if (!response.ok) {
+          throw new Error(data.detail || 'Invalid email or password.');
+        }
       }
 
       showToast('Welcome back, ' + data.user.username + '!', 'success');

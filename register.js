@@ -39,23 +39,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     try {
-      const fetchFunc = typeof fetchWithTimeout === 'function' ? fetchWithTimeout : fetch;
-      const res = await fetchFunc('/api/auth/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          username,
-          email,
-          password,
-        }),
-      });
-
-      const data = await res.json();
-
-      if (!res.ok) {
-        throw new Error(data.detail || 'Registration failed');
+      var data;
+      if (window.CaraAPI) {
+        try {
+          data = await window.CaraAPI.post('/api/auth/register', { username: username, email: email, password: password });
+        } catch (apiErr) {
+          throw new Error(apiErr.data && apiErr.data.detail ? apiErr.data.detail : 'Registration failed');
+        }
+      } else {
+        const fetchFunc = typeof fetchWithTimeout === 'function' ? fetchWithTimeout : fetch;
+        const res = await fetchFunc('/api/auth/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username: username, email: email, password: password }),
+        });
+        data = await res.json();
+        if (!res.ok) {
+          throw new Error(data.detail || 'Registration failed');
+        }
       }
 
       messageBox.style.color = 'green';
